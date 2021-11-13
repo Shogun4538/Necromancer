@@ -23,30 +23,21 @@ public class EnemyContoller : MonoBehaviour
             
             this.tag = "enemy_not";
         }
+        
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.collider.tag == "player")//プレイヤーにあったたら
+        if (other.gameObject.tag == "sword")//剣にあったたら
         {
-            death = 2;
-            death = 0;
             enemyHP -= 1;
             //enemyHP1 -= 1;
             Debug.Log("敵のHPは" + enemyHP);
-            Debug.Log("Player collision");
-        }
-        if (collision.collider.tag == "player")//もしタグがプレイヤーだったら
-        {
-            if (enemyHP == 0)
+            Debug.Log("abc");
+            if (enemyHP <= 0)//もし敵のHPが0以下だった場合
             {
-                Destroy(gameObject);//敵を消す
                 Instantiate(GetShadow1, transform.position, transform.rotation);//getshadowをスポーンさせる
-            }
-            /*if (enemyHP1 == 0)
-            {
                 Destroy(gameObject);//敵を消す
-                Instantiate(GetShadow2, transform.position, transform.rotation);//getshadowをスポーンさせる
-            }*/
+            }
         }
     }
 }

@@ -46,17 +46,13 @@ public class PlayerController : MonoBehaviour
                 Debug.Log(score);
             }
         }
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))//マウスをクリックしたらsword_Actionを起こす
         {
             StartCoroutine("Sword_Action");
         }
         
         level_UI.text = string.Format("{0:0}", level);//プレイヤーのレベル
-        /*if (enemyHP == 0)//エナミーのhpが０になったら
-        {
-            enemy_death_count += 1;
-            enemyHP = 3;
-        }*/
+       
         if (score == 3)
         {
             level = +1;
@@ -64,20 +60,10 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("collision");
-        /*if (collision.collider.tag == "enemy_not")//もしタグがenemy_notだったら
+        
+        if (collision.collider.tag == "Shadow1(1)")//自分よりレベルが低かったらshadowの魂をとtrないようにする
         {
-            GameObject obj = GameObject.Find("enemy");//エナミーを探して消去する
-            Destroy(obj);
-            Instantiate(GetShadow1, transform.position, transform.rotation);//getshadowをスポーンさせる
-        }*/
-        if (collision.collider.tag == "enemy")
-        {
-            enemyHP -= 1;
-        }
-        if (collision.collider.tag == "Shadow1(1)")
-        {
-           if (level >= 1)
+            if (level >= 1)
             {
                 score += 1;
                 Debug.Log(score);
@@ -89,10 +75,10 @@ public class PlayerController : MonoBehaviour
             Debug.Log(score);
         }
     }
-    IEnumerator Sword_Action()
+    IEnumerator Sword_Action()//swoed_Actionを起こされた時ken_colのSetActiveをonにする
     {
         Ken_Col.SetActive(true);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.000000001f);
         Ken_Col.SetActive(false);
         yield return null;
     }
