@@ -24,6 +24,6 @@ public class player_HP_script : MonoBehaviour
     }
     private void  OnCollisionEnter(Collision collision)
     {
-     
+        
     }
 }

@@ -11,6 +11,7 @@ TagManager:
   - enemy_not
   - Shadow1(1)
   - sword
+  - enemy_lv_1
   layers:
   - Default
   - TransparentFX
