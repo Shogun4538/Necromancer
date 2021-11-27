@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class enemy_HP_script : MonoBehaviour
 {
-    Slider _slider;//スライダー
+    public Slider _slider;//スライダー
     public int EnemyHP;//敵の
     GameObject Player;
     PlayerController script;
@@ -13,16 +13,7 @@ public class enemy_HP_script : MonoBehaviour
     void Start()
     {
         EnemyHP = 3;
-        _slider = GetComponent<Slider>();
 
-        float maxHp = 3f;
-        float nowHp = 0f;
-
-        //スライダーの最大値の設定
-        _slider.maxValue = maxHp;
-
-        //スライダーの現在値の設定
-        _slider.value = nowHp;
     }
 
     // Update is called once per frame
@@ -30,8 +21,12 @@ public class enemy_HP_script : MonoBehaviour
     {
         _slider.value = EnemyHP;
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-
+        if(other.gameObject.tag == "sword")
+        {
+            EnemyHP -= 1;
+            Debug.Log("aaaaa");
+        }
     }
 }

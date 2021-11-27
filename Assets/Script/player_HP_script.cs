@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class player_HP_script : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class player_HP_script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerHP = 100;
+        playerHP = 10;
     }
 
     // Update is called once per frame
@@ -20,10 +21,16 @@ public class player_HP_script : MonoBehaviour
         if (playerHP == 0)
         {
             Debug.Log("gameover");
+            SceneManager.LoadScene("GameOver");
         }
     }
     private void  OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.collider.tag == "enemy")
+        {
+            playerHP -= 1;
+            Debug.Log("hit");
+            Debug.Log("HP" + playerHP);
+        }
     }
 }
