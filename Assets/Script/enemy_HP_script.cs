@@ -23,10 +23,9 @@ public class enemy_HP_script : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "sword")
+        if (other.gameObject.tag == "sword")
         {
             EnemyHP -= 1;
-            Debug.Log("aaaaa");
         }
     }
 }

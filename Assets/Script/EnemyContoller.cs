@@ -8,6 +8,8 @@ public class EnemyContoller : MonoBehaviour
     public int enemyHP = 3;//敵のHP
     public GameObject GetShadow1;//魂とりおわった敵
     //public GameObject GetShadow2;//魂とりおわった敵1
+    public int span = 3;//ダメージを与える間の時間
+    private float currentTime = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +37,15 @@ public class EnemyContoller : MonoBehaviour
                 Destroy(gameObject);//敵を消す
             }
 
+        }
+    }
+    private void OnCollutionEnter(Collider collider)
+    {
+        currentTime += Time.deltaTime;
+        if (currentTime > span)
+        {
+            enemyHP -= (Random.Range(1, 2));
+            Debug.Log(enemyHP);
         }
     }
 }
